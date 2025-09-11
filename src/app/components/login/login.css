@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* ============================================================
+   Contenedor principal
+============================================================ */
+.login-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
+    background-size: contain;  
+    background-color: #60046e; 
+    color: white;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
+    background-size: cover;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* ============================================================
+   Títulos
+============================================================ */
+.main-title {
+    position: relative;
+    z-index: 3;
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #4c1d95;
+}
+
+/* ============================================================
+   Caja de login
+============================================================ */
+.login-box {
+    position: relative;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.98); 
+    backdrop-filter: blur(15px); 
+    color: #333;
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4); 
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #7c3aed;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+.login-box input::placeholder {
+    color: #9ca3af;
+}
+
+/* ============================================================
+   Input group
+============================================================ */
+.input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #4c1d95;
+    font-size: 0.9rem;
+}
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    z-index: 2;
+    color: #7c3aed;
+    font-size: 1.1rem;
+}
+
+/* ============================================================
+   Botones
+============================================================ */
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+}
+
+.login-button:active {
+    transform: translateY(0);
+}
+
+/* ============================================================
+   Enlaces
+============================================================ */
+.register-link {
+    margin-top: 1.5rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: #7c3aed;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: #6d28d9;
+    text-decoration: underline;
+}
+
+/* ============================================================
+   Decoraciones y animaciones
+============================================================ */
+.decoration {
+    position: absolute;
+    z-index: 2;
+}
+
+.circle-1 {
+    top: 10%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.circle-2 {
+    bottom: 20%;
+    right: 15%;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+.circle-3 {
+    top: 50%;
+    left: 5%;
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ============================================================
+   Media Queries
+============================================================ */
+@media (max-width: 768px) {
+    .main-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .login-box { padding: 2rem; width: 350px; }
+    .decoration { display: none; }
+}
+
+@media (max-width: 480px) {
+    .main-title { font-size: 2rem; }
+    .login-box { padding: 1.5rem; width: 320px; }
+}
