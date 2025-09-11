@@ -4,15 +4,29 @@
     box-sizing: border-box;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #6B46C1 0%, #9333EA 50%, #A855F7 100%);
+    background-color: #60046e; 
+    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
+    background-size: contain;  
     min-height: 100vh;
+    background-color: #60046e; 
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    padding: 35px;
 }
 
 /* Elementos decorativos de fondo */
@@ -217,3 +231,4 @@ body::after {
         margin-bottom: 20px;
     }
 }
+

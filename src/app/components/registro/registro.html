@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UPMH BANCA - Registro</title>
     <link rel="stylesheet" href="registro.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/upmhLogo.png">
 </head>
 <body>
-    <div class="decorative-shapes">
-        <div class="shape shape1"></div>
-        <div class="shape shape2"></div>
-        <div class="shape shape3"></div>
-    </div>
-
     <div class="container">
         <h1 class="title">UPMH BANCA</h1>
         
@@ -70,13 +65,12 @@
             <button type="submit" class="register-button">Registro</button>
             
             <div class="login-link">
-                ¿Ya Tienes Cuenta? <a href="/login">Login</a>
+                ¿Ya Tienes Cuenta? <a href="#/login">Login</a>
             </div>
         </form>
     </div>
 
     <script>
-        // Validación de la clave electoral para que solo acepte números
         document.getElementById('clave-electoral').addEventListener('input', function(e) {
             this.value = this.value.replace(/[^0-9]/g, '');
             if (this.value.length > 10) {
@@ -84,7 +78,6 @@
             }
         });
 
-        // Validación de confirmación de correo
         document.querySelector('form').addEventListener('submit', function(e) {
             const correo = document.getElementById('correo').value;
             const confirmarCorreo = document.getElementById('confirmar-correo').value;

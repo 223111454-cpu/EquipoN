@@ -4,6 +4,6 @@ import { Registro } from './components/registro/registro';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
-  { path: 'Registro', component: Registro },
+  { path: 'registro', component: Registro },
   { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
