@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Prestamo</title>
+    <link rel="stylesheet" href="prestamo.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/upmhLogo.png">
+</head>
+<body>
+    <div class="form-container">
+    <h1 class="form-title">SOLICITUD DE PRÉSTAMO</h1>
+
+    <form (ngSubmit)="enviarPrestamo()">
+        <div class="form-grid">
+        <div class="form-group">
+            <label for="ocupacion">A qué te dedicas</label>
+            <select id="ocupacion" required [(ngModel)]="ocupacion" name="ocupacion">
+            <option value="">Selecciona una opción</option>
+            <option value="estudiante">Estudiante</option>
+            <option value="trabajador">Trabajador</option>
+            <option value="empleado">Empleado</option>
+            <option value="independiente">Trabajador Independiente</option>
+            <option value="empresario">Empresario</option>
+            <option value="jubilado">Jubilado</option>
+            <option value="desempleado">Desempleado</option>
+            <option value="otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" placeholder="Ej: 555-123-4567" required [(ngModel)]="telefono" name="telefono">
+        </div>
+
+        <div class="form-group">
+            <label for="ingresos">Cuánto ganas al mes</label>
+            <input type="text" id="ingresos" placeholder="Ej: $15,000" required [(ngModel)]="ingresos" name="ingresos">
+        </div>
+
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" id="direccion" placeholder="Calle, número, colonia, ciudad" required [(ngModel)]="direccion" name="direccion">
+        </div>
+
+        <!-- INE PDF -->
+        <div class="form-group file-wrapper">
+            <label>INE (PDF)</label>
+            <button type="button" class="file-button" (click)="ineInput.click()">Subir</button>
+            <input #ineInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'ine')">
+            <span class="file-name" *ngIf="ineFile">{{ ineFile?.name }}</span>
+        </div>
+
+        <!-- Comprobante de Domicilio PDF -->
+        <div class="form-group file-wrapper">
+            <label>Comprobante de Domicilio (PDF)</label>
+            <button type="button" class="file-button" (click)="cdInput.click()">Subir</button>
+            <input #cdInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'cd')">
+            <span class="file-name" *ngIf="cdFile">{{ cdFile?.name }}</span>
+        </div>
+
+        <!-- Comprobante de Ingresos PDF -->
+        <div class="form-group file-wrapper">
+            <label>Comprobante de Ingresos (PDF)</label>
+            <button type="button" class="file-button" (click)="comprobanteInput.click()">Subir</button>
+            <input #comprobanteInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'comprobante')">
+            <span class="file-name" *ngIf="comprobanteIngresosFile">{{ comprobanteIngresosFile?.name }}</span>
+        </div>
+
+        </div>
+
+        <button type="submit" class="submit-button">Enviar</button>
+    </form>
+    </div>
+ 
+    <script>
+        document.getElementById('creditForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            console.log('Datos del formulario:', data);
+            alert('Formulario enviado correctamente.');
+        });
+
+
+        document.getElementById('ineFile').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                document.getElementById('ine').value = e.target.files[0].name;
+            }
+        });
+
+        document.getElementById('cdFile').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                document.getElementById('cd').value = e.target.files[0].name;
+            }
+        });
+
+
+        document.getElementById('comprobanteIngresosFile').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                document.getElementById('comprobanteIngresos').value = e.target.files[0].name;
+            }
+        });
+
+        document.getElementById('ocupacion').addEventListener('focus', function() {
+            this.style.borderColor = '#10B981';
+            this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.2)';
+            this.style.background = 'white';
+        });
+        
+        document.getElementById('ocupacion').addEventListener('blur', function() {
+            this.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            this.style.boxShadow = 'none';
+            this.style.background = 'rgba(255, 255, 255, 0.9)';
+        });
+    </script>
+</body>
+</html>

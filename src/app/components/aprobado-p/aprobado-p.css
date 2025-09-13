@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
+html, body {
+    margin: 0;
+    padding: 0; 
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #60046e; 
+    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
+    background-size: contain;  
+    min-height: 100vh;
+    background-color: #60046e; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 35px;
+}
+
+/* Elementos decorativos de fondo */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #F59E0B, #EF4444, #10B981);
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+/* Nuevos estilos para la página de felicitaciones */
+.congratulations-container {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 600px;
+    width: 100%;
+    animation: slideInUp 1s ease-out, float 3s ease-in-out infinite 1s;
+}
+
+.success-icon {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #10B981, #059669);
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+    animation: pulse 2s infinite;
+}
+
+.success-icon::before {
+    content: '✓';
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.main-title {
+    font-size: 3.2em;
+    font-weight: 800;
+    background: linear-gradient(135deg, #60046e, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.4em;
+    color: #374151;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.approval-message {
+    background: linear-gradient(135deg, #F3F4F6, #E5E7EB);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px 0;
+    border-left: 5px solid #10B981;
+}
+
+.approval-text {
+    font-size: 1.2em;
+    color: #1F2937;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.highlight-text {
+    color: #60046e;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.next-steps {
+    background: linear-gradient(135deg, rgba(96, 4, 110, 0.1), rgba(139, 92, 246, 0.1));
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    border: 2px dashed #8B5CF6;
+}
+
+.steps-title {
+    font-size: 1.3em;
+    color: #60046e;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #374151;
+}
+
+.step-number {
+    background: linear-gradient(135deg, #60046e, #8B5CF6);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.celebration-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(45deg, #F59E0B, #EF4444, #10B981, #8B5CF6);
+    border-radius: 50%;
+    animation: confetti 3s ease-out infinite;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 0.3s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 0.8s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 1.3s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 1.8s; }
+
+.logo-container {
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+.bank-logo {
+    max-width: 150px;
+    height: auto;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes confetti {
+    0% {
+        opacity: 1;
+        transform: translateY(-100px) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(96, 4, 110, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(96, 4, 110, 0.6); }
+}
+
+@media (max-width: 768px) {
+    .congratulations-container {
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    
+    .main-title {
+        font-size: 2.2em;
+    }
+    
+    .subtitle {
+        font-size: 1.2em;
+    }
+    
+    .success-icon {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .success-icon::before {
+        font-size: 45px;
+    }
+}

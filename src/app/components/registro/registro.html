@@ -11,13 +11,13 @@
     <div class="container">
         <h1 class="title">UPMH BANCA</h1>
         
-        <form>
+        <form (ngSubmit)="registro()">
             <div class="form-row">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <div class="input-container">
                         <span class="input-icon">👤</span>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required [(ngModel)]="nombre">
                     </div>
                 </div>
                 
@@ -25,7 +25,7 @@
                     <label for="apellidos">Apellidos:</label>
                     <div class="input-container">
                         <span class="input-icon">👤</span>
-                        <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" required>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" required [(ngModel)]="apellidos">
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <label for="correo">Correo Electrónico:</label>
                 <div class="input-container">
                     <span class="input-icon">📧</span>
-                    <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required>
+                    <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required [(ngModel)]="correo">
                 </div>
             </div>
             
@@ -42,7 +42,15 @@
                 <label for="confirmar-correo">Confirmar Correo Electrónico:</label>
                 <div class="input-container">
                     <span class="input-icon">📧</span>
-                    <input type="email" id="confirmar-correo" name="confirmar-correo" placeholder="Confirma tu correo electrónico" required>
+                    <input type="email" id="confirmar-correo" name="confirmar-correo" placeholder="Confirma tu correo electrónico" required [(ngModel)]="confirmarCorreo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <div class="input-container">
+                    <span class="input-icon">📱</span>
+                    <input type="number" id="phone" name="phone" placeholder="Ingresa tu Teléfono" required [(ngModel)]="phone">
                 </div>
             </div>
             
@@ -50,7 +58,7 @@
                 <label for="contrasena">Contraseña:</label>
                 <div class="input-container">
                     <span class="input-icon">🔒</span>
-                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required [(ngModel)]="contrasena">
                 </div>
             </div>
             
@@ -58,17 +66,21 @@
                 <label for="clave-electoral">Clave Electoral (10 dígitos):</label>
                 <div class="input-container">
                     <span class="input-icon">🗳️</span>
-                    <input type="text" id="clave-electoral" name="clave-electoral" placeholder="Ingresa tu clave electoral" maxlength="10" pattern="[0-9]{10}" required>
+                    <input type="text" id="clave-electoral" name="clave-electoral" placeholder="Ingresa tu clave electoral"
+                        maxlength="10" required 
+                        [value]="claveElectoral"
+                        (input)="onClaveElectoralInput($event)">
                 </div>
             </div>
             
             <button type="submit" class="register-button">Registro</button>
             
             <div class="login-link">
-                ¿Ya Tienes Cuenta? <a href="#/login">Login</a>
+                ¿Ya Tienes Cuenta? <a routerLink="/login">Login</a>
             </div>
         </form>
     </div>
+
 
     <script>
         document.getElementById('clave-electoral').addEventListener('input', function(e) {

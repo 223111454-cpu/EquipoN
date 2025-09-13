@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPMH BANCA - Menu</title>
+    <link rel="stylesheet" href="menu.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/upmhLogo.png">
+</head>
+<body>
+    <div class="cards-container">
+
+        <div class="service-card credit-card">
+            <div class="card-content">
+                <div class="card-image credit-image"></div>
+                <button class="solicitar-btn" onclick="window.open('#/credito', '_self')">Solicitar</button>
+            </div>
+        </div>
+
+        <div class="service-card loan-card">
+            <div class="card-content">
+                <div class="card-image loan-image"></div>
+                <button class="solicitar-btn" onclick="window.open('#/prestamo', '_self')">Solicitar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(50px)';
+                    card.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
