@@ -57,4 +57,12 @@ export class Prestamo {
     alert('Solicitud enviada correctamente');
     this.router.navigate(['/aprobadoP']);
   }
+
+
+  cerrarSesion() {
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
+  }
+
+
 }

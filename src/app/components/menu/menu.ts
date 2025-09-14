@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,6 +7,11 @@ import { Component } from '@angular/core';
   templateUrl: './menu.html',
   styleUrl: './menu.css'
 })
-export class Menu {
 
+export class Menu {
+  constructor(private router: Router) {}
+  cerrarSesion() {
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
+  }
 }

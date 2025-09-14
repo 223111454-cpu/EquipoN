@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-registro',
-  standalone: true,
-  imports: [FormsModule, RouterModule, HttpClientModule],
+  standalone: true,       
+  imports: [FormsModule, RouterModule],
   templateUrl: './registro.html',
   styleUrls: ['./registro.css']
 })
@@ -20,7 +19,7 @@ export class Registro {
   contrasena: string = '';
   claveElectoral: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   registro() {
     // Validaciones
@@ -34,36 +33,19 @@ export class Registro {
       return;
     }
 
-    // Datos a enviar al backend
-    const datos = {
-      nombre: this.nombre,
-      apellidos: this.apellidos,
-      correo: this.correo,
-      phone: this.phone,
-      contrasena: this.contrasena,
-      claveElectoral: this.claveElectoral
-    };
+    console.log('Registro exitoso!');
+    console.log('Nombre:', this.nombre);
+    console.log('Apellidos:', this.apellidos);
+    console.log('Correo:', this.correo);
+    console.log('Teléfono:', this.phone);
+    console.log('Contraseña:', this.contrasena);
+    console.log('Clave electoral:', this.claveElectoral);
 
-    // URL de codeflex
-    const url = 'https://k.codeflex.com.co/BancaUpmh/registro.php';
-
-    // POST
-    this.http.post(url, datos).subscribe(
-      (res: any) => {
-        if(res.status === 'success'){
-          alert(res.message); 
-          this.router.navigate(['/login']);
-        } else {
-          alert(res.message);
-        }
-      },
-      (err) => {
-        console.error(err);
-        alert('Error en el registro. Intenta nuevamente.');
-      }
-    );
+    // Redirigir a /menu
+    this.router.navigate(['/menu']);
   }
 
+  // Permitir solo números en clave electoral
   onClaveElectoralInput(event: Event) {
     const input = event.target as HTMLInputElement;
     input.value = input.value.replace(/[^0-9]/g, '');

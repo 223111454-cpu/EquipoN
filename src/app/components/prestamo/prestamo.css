@@ -180,3 +180,33 @@ select:focus {
         padding: 20px;
     }
 }
+
+
+
+
+/* Botón de Cerrar Sesión flotante */
+.logout-btn {
+    position: absolute;      
+    top: 15px;              
+    right: 20px;            
+    padding: 10px 20px;
+    background-color: #ff4d74;  
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 9999;       
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff7875;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}

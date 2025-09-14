@@ -57,4 +57,10 @@ export class Credito {
     alert('Solicitud enviada correctamente');
     this.router.navigate(['/aprobadoC']);
   }
+
+  cerrarSesion() {
+    localStorage.removeItem('usuario');
+    this.router.navigate(['/login']);
+  }
+
 }
