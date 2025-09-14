@@ -1,61 +1,93 @@
-# BancaUpmh
+# BANCA UPMH 🚀
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+¡Bienvenido a **BANCA UPMH**!  
+Esta es una **plataforma bancaria simulada** desarrollada con Angular, lista para que la explores en tu computadora o veas el **[DEMO EN VIVO](https://upmh.codeflex.com.co/#/inicio)**.
 
-Plataforma Bancaria - Simulación - UPMH [DEMO EN LINEA](https://upmh.codeflex.com.co/#/inicio)
+---
 
-## Development server
+## 🔧 Requisitos previos
 
-To start a local development server, run:
+Antes de instalar el proyecto, asegúrate de tener instalados:
 
-```bash
-ng serve
-```
+1. **Git**  
+   Descárgalo desde: [https://git-scm.com/](https://git-scm.com/)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2. **Node.js** (versión 20.19.0 o superior)  
+   Descárgalo desde: [https://nodejs.org/](https://nodejs.org/)
 
-## Code scaffolding
+3. **Angular CLI**  
+   Puedes instalarlo globalmente ejecutando:
+   ```bash
+   npm install -g @angular/cli
+   ```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 🏗️ Instalación del proyecto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. **Clona este repositorio**
+   ```bash
+   git clone https://github.com/223111454-cpu/EquipoN.git
+   ```
 
-```bash
-ng generate --help
-```
+2. **Entra a la carpeta del proyecto**
+   ```bash
+   cd EquipoN
+   ```
 
-## Building
+3. **Instala las dependencias**
+   ```bash
+   npm install
+   ```
 
-To build the project run:
+4. **Inicia el servidor de desarrollo**
+   ```bash
+   ng serve
+   ```
 
-```bash
-ng build
-```
+5. **Abre tu navegador** y ve a:
+   ```
+   http://localhost:4200/
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+¡Listo! Ahora puedes explorar la aplicación y ver cómo funciona en tu máquina local. 😎
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🌐 Demo en línea
 
-```bash
-ng test
-```
+Si prefieres ver la plataforma sin instalar nada, puedes acceder al **[DEMO EN VIVO](https://upmh.codeflex.com.co/#/inicio)** directamente.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## ⚡ Comandos útiles
 
-```bash
-ng e2e
-```
+- **Generar un componente nuevo**
+  ```bash
+  ng generate component nombre-del-componente
+  ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- **Compilar el proyecto**
+  ```bash
+  ng build
+  ```
 
-## Additional Resources
+- **Ejecutar pruebas unitarias**
+  ```bash
+  ng test
+  ```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Ejecutar pruebas end-to-end**
+  ```bash
+  ng e2e
+  ```
+
+---
+
+## 📚 Recursos adicionales
+
+Para más información sobre Angular CLI y todas sus funcionalidades, visita la [documentación oficial de Angular CLI](https://angular.dev/tools/cli).
+
+---
+
+¡Disfruta explorando BancaUpmh y aprendiendo Angular al mismo tiempo! 🚀
