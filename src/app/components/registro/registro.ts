@@ -1,75 +1,15 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule, RouterModule, HttpClientModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './registro.html',
-  styleUrls: ['./registro.css']
+  styleUrl: './registro.css'
 })
 export class Registro {
 
-  nombre: string = '';
-  apellidos: string = '';
-  correo: string = '';
-  confirmarCorreo: string = '';
-  phone: string = '';
-  contrasena: string = '';
-  claveElectoral: string = '';
-
-  constructor(private router: Router, private http: HttpClient) {}
-
-  registro() {
-    // Validaciones
-    if (this.correo !== this.confirmarCorreo) {
-      alert('Los correos electrónicos no coinciden');
-      return;
-    }
-
-    if (this.claveElectoral.length !== 10) {
-      alert('La clave electoral debe tener exactamente 10 dígitos');
-      return;
-    }
-
-    // Datos a enviar al backend
-    const datos = {
-      nombre: this.nombre,
-      apellidos: this.apellidos,
-      correo: this.correo,
-      phone: this.phone,
-      contrasena: this.contrasena,
-      claveElectoral: this.claveElectoral
-    };
-
-    // URL de codeflex
-    const url = 'https://k.codeflex.com.co/BancaUpmh/registro.php';
-
-    // POST
-    this.http.post(url, datos).subscribe(
-      (res: any) => {
-        if(res.status === 'success'){
-          alert(res.message); 
-          this.router.navigate(['/login']);
-        } else {
-          alert(res.message);
-        }
-      },
-      (err) => {
-        console.error(err);
-        alert('Error en el registro. Intenta nuevamente.');
-      }
-    );
-  }
-
-  onClaveElectoralInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    input.value = input.value.replace(/[^0-9]/g, '');
-    if (input.value.length > 10) {
-      input.value = input.value.slice(0, 10);
-    }
-    this.claveElectoral = input.value;
-  }
 }
+ 

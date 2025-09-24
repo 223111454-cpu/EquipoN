@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPMH BANCA - Registro - MX</title>
+    <link rel="stylesheet" href="registro-mx.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/upmhLogo-removebg-preview.png">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">UPMH BANCA</h1>
+        
+        <form (ngSubmit)="registro()">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <div class="input-container">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required [(ngModel)]="nombre">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <div class="input-container">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" required [(ngModel)]="apellidos">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="correo">Correo Electrónico:</label>
+                <div class="input-container">
+                    <span class="input-icon">📧</span>
+                    <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required [(ngModel)]="correo">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmar-correo">Confirmar Correo Electrónico:</label>
+                <div class="input-container">
+                    <span class="input-icon">📧</span>
+                    <input type="email" id="confirmar-correo" name="confirmar-correo" placeholder="Confirma tu correo electrónico" required [(ngModel)]="confirmarCorreo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <div class="input-container">
+                    <span class="input-icon">📱</span>
+                    <input type="number" id="phone" name="phone" placeholder="Ingresa tu Teléfono" required [(ngModel)]="phone">
+                </div>
+            </div>
+        
+            
+            <div class="form-group">
+                <label for="clave-electoral">Clave Electoral (10 dígitos):</label>
+                <div class="input-container">
+                    <span class="input-icon">🗳️</span>
+                    <input type="text" id="clave-electoral" name="clave-electoral" placeholder="Ingresa tu clave electoral"
+                        maxlength="10" required 
+                        [value]="claveElectoral"
+                        (input)="onClaveElectoralInput($event)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="clave-curp">CURP:</label>
+                <div class="input-container">
+                    <span class="input-icon">🗳️</span>
+                    <input type="text" id="clave-curp" name="clave-curp" placeholder="Ingresa tu curp"
+                        maxlength="18" required 
+                        [value]="curpElectoral"
+                        (input)="onCurpElectoralInput($event)">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha-emision">Fecha de Emisión:</label>
+                <div class="input-container">
+                    <span class="input-icon">📅</span>
+                    <input type="date" id="fecha-emision" name="fecha-emision" required [(ngModel)]="fechaEmision">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
+                <div class="input-container">
+                    <span class="input-icon">📅</span>
+                    <input type="date" id="fecha-vencimiento" name="fecha-vencimiento" required [(ngModel)]="fechaVencimiento">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <div class="input-container">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required [(ngModel)]="contrasena">
+                </div>
+            </div>
+        
+            <button type="submit" class="register-button">Registro</button>
+
+            <!-- Spinner -->
+            <div *ngIf="cargando" style="text-align: center; margin-top: 10px; font-weight: bold; color: #007bff;">
+            ⏳ Registrando... Por favor espera
+            </div>
+
+            <div class="login-link">
+                ¿Ya Tienes Cuenta? <a routerLink="/login">Login</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

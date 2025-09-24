@@ -9,107 +9,16 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">UPMH BANCA</h1>
-        
-        <form (ngSubmit)="registro()">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <div class="input-container">
-                        <span class="input-icon">👤</span>
-                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required [(ngModel)]="nombre">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="apellidos">Apellidos:</label>
-                    <div class="input-container">
-                        <span class="input-icon">👤</span>
-                        <input type="text" id="apellidos" name="apellidos" placeholder="Ingresa tus apellidos" required [(ngModel)]="apellidos">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="correo">Correo Electrónico:</label>
-                <div class="input-container">
-                    <span class="input-icon">📧</span>
-                    <input type="email" id="correo" name="correo" placeholder="Ingresa tu correo electrónico" required [(ngModel)]="correo">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="confirmar-correo">Confirmar Correo Electrónico:</label>
-                <div class="input-container">
-                    <span class="input-icon">📧</span>
-                    <input type="email" id="confirmar-correo" name="confirmar-correo" placeholder="Confirma tu correo electrónico" required [(ngModel)]="confirmarCorreo">
-                </div>
-            </div>
+        <h1 class="title">¿De dónde eres?</h1>
 
-            <div class="form-group">
-                <label for="phone">Teléfono:</label>
-                <div class="input-container">
-                    <span class="input-icon">📱</span>
-                    <input type="number" id="phone" name="phone" placeholder="Ingresa tu Teléfono" required [(ngModel)]="phone">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="contrasena">Contraseña:</label>
-                <div class="input-container">
-                    <span class="input-icon">🔒</span>
-                    <input type="password" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña" required [(ngModel)]="contrasena">
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <label for="clave-electoral">Clave Electoral (10 dígitos):</label>
-                <div class="input-container">
-                    <span class="input-icon">🗳️</span>
-                    <input type="text" id="clave-electoral" name="clave-electoral" placeholder="Ingresa tu clave electoral"
-                        maxlength="10" required 
-                        [value]="claveElectoral"
-                        (input)="onClaveElectoralInput($event)">
-                </div>
-            </div>
-            
-            <button type="submit" class="register-button">Registro</button>
-            
-            <div class="login-link">
-                ¿Ya Tienes Cuenta? <a routerLink="/login">Login</a>
-            </div>
-        </form>
+        <div class="button-group">
+            <button class="nav-button" routerLink="/registro_MX">Mexicano</button>
+            <button class="nav-button" routerLink="/registro_EX">Extranjero</button>
+        </div>
+
+        <div class="login-link">
+            ¿Ya Tienes Cuenta? <a routerLink="/login">Login</a>
+        </div>
     </div>
-
-
-    <script>
-        document.getElementById('clave-electoral').addEventListener('input', function(e) {
-            this.value = this.value.replace(/[^0-9]/g, '');
-            if (this.value.length > 10) {
-                this.value = this.value.slice(0, 10);
-            }
-        });
-
-        document.querySelector('form').addEventListener('submit', function(e) {
-            const correo = document.getElementById('correo').value;
-            const confirmarCorreo = document.getElementById('confirmar-correo').value;
-            const claveElectoral = document.getElementById('clave-electoral').value;
-            
-            if (correo !== confirmarCorreo) {
-                e.preventDefault();
-                alert('Los correos electrónicos no coinciden');
-                return;
-            }
-            
-            if (claveElectoral.length !== 10) {
-                e.preventDefault();
-                alert('La clave electoral debe tener exactamente 10 dígitos');
-                return;
-            }
-            
-            e.preventDefault();
-            alert('Registro exitoso!');
-        });
-    </script>
 </body>
 </html>

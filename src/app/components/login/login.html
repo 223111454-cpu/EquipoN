@@ -54,6 +54,14 @@
 
                 <!-- Botón de login -->
                 <button type="submit" class="login-button">Login</button>
+           
+                <!-- Spinner -->
+                <div *ngIf="cargando" style="text-align: center; margin-top: 10px; font-weight: bold; color: #007bff;">
+                ⏳ Iniciando ... Por favor espera
+                </div>
+           
+           
+           
             </form>
             
             <p class="register-link">¿No Tienes Cuenta? <a routerLink="/registro">Regístrate</a></p>

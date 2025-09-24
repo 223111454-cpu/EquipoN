@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { Login } from './components/login/login';
 import { Registro } from './components/registro/registro';
+import { RegistroMX } from './components/registro-mx/registro-mx';
+import { RegistroEX } from './components/registro-ex/registro-ex';
 import { Inicio } from './components/inicio/inicio';
 import { authGuard } from './guards/auth.guard';
 
@@ -8,6 +10,8 @@ export const routes: Routes = [
   { path: 'inicio', component: Inicio },
   { path: 'login', component: Login },
   { path: 'registro', component: Registro },
+  { path: 'registro_MX', component: RegistroMX },
+  { path: 'registro_EX', component: RegistroEX },
   { 
     path: 'menu', 
     loadComponent: () => import('./components/menu/menu').then(m => m.Menu), 

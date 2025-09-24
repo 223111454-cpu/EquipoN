@@ -252,3 +252,34 @@ body::after {
 .logout-btn:active {
     transform: translateY(0);
 }
+
+.rol-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgba(44, 62, 80, 0.9);
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+
+.rol-info2 {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgba(44, 62, 80, 0.9); 
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    white-space: nowrap;
+}

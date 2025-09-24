@@ -13,6 +13,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class Login {
   email: string = ''; 
   password: string = '';
+  cargando: boolean = false;
 
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -22,24 +23,33 @@ export class Login {
       return;
     }
 
+    this.cargando = true;
+
     const datos = {
       email: this.email,
       password: this.password
     };
 
-    const url = 'https://k.codeflex.com.co/BancaUpmh/login.php';
+    const url = 'http://localhost:3001/login';
 
     this.http.post(url, datos).subscribe(
       (res: any) => {
+        this.cargando = false;
+
         if (res.status === 'success') {
-          alert('Login exitoso!');
-          localStorage.setItem('usuario', JSON.stringify({ email: this.email }));
+          alert(`Login exitoso (${res.tipo})!`);
+          localStorage.setItem('usuario', JSON.stringify({ 
+            email: this.email, 
+            tipo: res.tipo, 
+            id: res.cliente_id 
+          }));
           this.router.navigate(['/menu']);
         } else {
           alert(res.message);
         }
       },
       (err) => {
+        this.cargando = false;
         console.error(err);
         alert('Error en el login. Intenta nuevamente.');
       }

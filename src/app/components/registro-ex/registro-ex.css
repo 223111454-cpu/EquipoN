@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #60046e; 
+    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
+    background-size: contain;  
+    min-height: 100vh;
+    background-color: #60046e; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 35px;
+}
+
+/* Elementos decorativos de fondo */
+body::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(139, 92, 246, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #F59E0B, #EF4444, #10B981);
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.decorative-shapes {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    width: 400px;
+    height: 200px;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50px;
+    opacity: 0.8;
+}
+
+.shape1 {
+    width: 150px;
+    height: 30px;
+    background: linear-gradient(90deg, #F59E0B, #EF4444);
+    transform: rotate(-15deg);
+}
+
+.shape2 {
+    width: 100px;
+    height: 25px;
+    background: linear-gradient(90deg, #10B981, #3B82F6);
+    top: 40px;
+    left: 80px;
+    transform: rotate(10deg);
+}
+
+.shape3 {
+    width: 120px;
+    height: 20px;
+    background: linear-gradient(90deg, #8B5CF6, #EC4899);
+    top: 80px;
+    left: 20px;
+    transform: rotate(-30deg);
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    z-index: 1;
+    position: relative;
+}
+
+.title {
+    color: #6B46C1;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.form-title {
+    color: #6B46C1;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #6B46C1;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #F9FAFB;
+}
+
+.input-container input:focus {
+    outline: none;
+    border-color: #8B5CF6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    background: white;
+}
+
+.input-container input::placeholder {
+    color: #9CA3AF;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #6B46C1;
+}
+
+.register-button {
+    width: 100%;
+    background: linear-gradient(135deg, #8B5CF6, #6B46C1);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.register-button:hover {
+    background: linear-gradient(135deg, #7C3AED, #5B21B6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #6B7280;
+}
+
+.login-link a {
+    color: #8B5CF6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 20px;
+        padding: 30px 25px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        margin-bottom: 20px;
+    }
+}
+

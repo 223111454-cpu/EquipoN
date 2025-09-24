@@ -10,8 +10,10 @@
 <body>        
 
     <button class="logout-btn" (click)="cerrarSesion()">Cerrar Sesión</button>
+    <span *ngIf="rolNombre" class="rol-info">Rol: {{ rolNombre }}</span>
+    <span *ngIf="rolNombre" class="rol-info2">Email: {{ email }}</span>
+    
     <div class="cards-container">
-
 
         <div class="service-card credit-card">
             <div class="card-content">
