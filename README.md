@@ -1,7 +1,7 @@
 # BANCA UPMH 🚀
 
 ¡Bienvenido a **BANCA UPMH**!  
-Esta es una **plataforma bancaria simulada** desarrollada con Angular, lista para que la explores en tu computadora o veas el **[DEMO EN VIVO](https://upmh.codeflex.com.co/#/inicio)**.
+Esta es una **plataforma bancaria simulada** desarrollada con Angular, lista para que la explores en tu computadora o veas el **[DEMO EN VIVO](https://banca.upmh.codeflex.com.co/)**.
 
 ---
 
@@ -56,7 +56,7 @@ Antes de instalar el proyecto, asegúrate de tener instalados:
 
 ## 🌐 Demo en línea
 
-Si prefieres ver la plataforma sin instalar nada, puedes acceder al **[DEMO EN VIVO](https://upmh.codeflex.com.co/#/inicio)** directamente.
+Si prefieres ver la plataforma sin instalar nada, puedes acceder al **[DEMO EN VIVO](https://banca.upmh.codeflex.com.co/)** directamente.
 
 ---
 

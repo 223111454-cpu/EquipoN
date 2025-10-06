@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { environmentP } from '../../environments/environment.prod';
 
 @Component({ 
   selector: 'app-login',
@@ -30,7 +32,7 @@ export class Login {
       password: this.password
     };
 
-    const url = 'http://localhost:3001/login';
+    const url = `${environmentP.apiUrl}/login`;
 
     this.http.post(url, datos).subscribe(
       (res: any) => {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { environmentP } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-menu',
@@ -34,8 +36,7 @@ export class Menu implements OnInit {
     }
 
     this.email = usuario.email;
-
-    const url = `http://localhost:3001/usuario_info?cliente_id=${usuario.id}&tipo=${usuario.tipo}`;
+    const url = `${environmentP.apiUrl}/usuario_info?cliente_id=${usuario.id}&tipo=${usuario.tipo}`;
 
     this.http.get(url).subscribe(
       (res: any) => {

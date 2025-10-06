@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { environmentP } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-registro-mx',
@@ -60,7 +62,8 @@ export class RegistroMX {
     };
 
     this.cargando = true; 
-    const url = 'http://localhost:3001/registro_MX';
+
+    const url = `${environmentP.apiUrl}/registro_MX`;
 
     this.http.post(url, datos).subscribe(
       (res: any) => {
@@ -78,7 +81,7 @@ export class RegistroMX {
         alert('Error en el registro. Intenta nuevamente.');
       }
     );
-  }
+  } 
 
   onClaveElectoralInput(event: Event) {
     const input = event.target as HTMLInputElement;
