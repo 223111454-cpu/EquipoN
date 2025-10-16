@@ -4,6 +4,8 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
+import { api } from '../../environments/api';
+
 
 @Component({
   selector: 'app-registro-mx',
@@ -63,7 +65,14 @@ export class RegistroMX {
 
     this.cargando = true; 
 
-    const url = `${environmentP.apiUrl}/registro_MX`;
+    let urlApi;
+    if (api.production) {
+      urlApi = environmentP.apiUrl;
+    }else{
+      urlApi = environment.apiUrl;
+    }
+
+    const url = `${urlApi}/registro_MX`;
 
     this.http.post(url, datos).subscribe(
       (res: any) => {
@@ -90,6 +99,25 @@ export class RegistroMX {
       input.value = input.value.slice(0, 10);
     }
     this.claveElectoral = input.value;
+  }
+
+  onClaveFechaEmision(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+    if (input.value.length > 4) {
+      input.value = input.value.slice(0, 4);
+    }
+    this.fechaEmision = input.value;
+  }
+
+
+  onClaveFechaVencimiento(event: Event) {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^0-9]/g, '');
+    if (input.value.length > 4) {
+      input.value = input.value.slice(0, 4);
+    }
+    this.fechaVencimiento = input.value;
   }
 
   onCurpElectoralInput(event: Event) {

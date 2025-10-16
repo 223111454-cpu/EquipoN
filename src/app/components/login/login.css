@@ -40,7 +40,7 @@ html, body {
     height: 100%;
     background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
     background-size: cover;
-    opacity: 0.3;
+    opacity: 0;
     z-index: 1;
 }
 
@@ -238,4 +238,12 @@ html, body {
 @media (max-width: 480px) {
     .main-title { font-size: 2rem; }
     .login-box { padding: 1.5rem; width: 320px; }
+}
+
+
+.logo2 {
+    width: 290px;
+    /*height: 400px;*/
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 1));
 }

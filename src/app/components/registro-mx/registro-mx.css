@@ -17,7 +17,6 @@ html, body {
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #60046e; 
-    background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
     background-size: contain;  
     min-height: 100vh;
     background-color: #60046e; 
@@ -109,7 +108,7 @@ body::after {
 
 .title {
     color: #6B46C1;
-    font-size: 2.5rem;
+    font-size: 1.9rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 30px;
@@ -230,4 +229,20 @@ body::after {
     .form-row .form-group {
         margin-bottom: 20px;
     }
+}
+
+
+.logo3 {
+    width: 290px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 1));
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    position: relative;
 }

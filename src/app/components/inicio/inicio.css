@@ -100,8 +100,8 @@ body::after {
 }
 
 .logo {
-    width: 60px;
-    height: 60px;
+    width: 280px;
+    /*height: 400px;*/
     object-fit: contain;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
@@ -349,8 +349,8 @@ body::after {
 
 @media (max-width: 480px) {
     .logo {
-        width: 45px;
-        height: 45px;
+        width: 240px;
+        /*height: 45px;*/
     }
     
     .bank-title {

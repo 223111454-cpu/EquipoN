@@ -4,6 +4,8 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
+import { api } from '../../environments/api';
+
 
 @Component({
   selector: 'app-registro-ex',
@@ -52,7 +54,14 @@ export class RegistroEX {
 
     this.cargando = true; 
 
-    const url = `${environmentP.apiUrl}/registro_EX`;
+    let urlApi;
+    if (api.production) {
+      urlApi = environmentP.apiUrl;
+    }else{
+      urlApi = environment.apiUrl;
+    }
+
+    const url = `${urlApi}/registro_EX`;
 
     this.http.post(url, datos).subscribe(
       (res: any) => {

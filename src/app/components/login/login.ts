@@ -4,6 +4,8 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
+import { api } from '../../environments/api';
+
 
 @Component({ 
   selector: 'app-login',
@@ -32,20 +34,33 @@ export class Login {
       password: this.password
     };
 
-    const url = `${environmentP.apiUrl}/login`;
+    
+    let urlApi;
+    if (api.production) {
+      urlApi = environmentP.apiUrl;
+    }else{
+      urlApi = environment.apiUrl;
+    }
+
+    const url = `${urlApi}/login`;
 
     this.http.post(url, datos).subscribe(
       (res: any) => {
         this.cargando = false;
 
         if (res.status === 'success') {
-          alert(`Login exitoso (${res.tipo})!`);
-          localStorage.setItem('usuario', JSON.stringify({ 
-            email: this.email, 
-            tipo: res.tipo, 
-            id: res.cliente_id 
-          }));
-          this.router.navigate(['/menu']);
+          if (res.rol_id === 1) {
+              alert(`Login exitoso (${res.tipo})!`);
+              localStorage.setItem('usuario', JSON.stringify({ 
+                email: this.email, 
+                tipo: res.tipo, 
+                id: res.cliente_id,
+                rol_id: res.rol_id
+              }));
+              this.router.navigate(['/menu']);
+          } else {
+            alert('Acceso en mantenimiento. Solo usuarios clientes pueden acceder actualmente.');
+          }
         } else {
           alert(res.message);
         }
@@ -53,7 +68,7 @@ export class Login {
       (err) => {
         this.cargando = false;
         console.error(err);
-        alert('Error en el login. Intenta nuevamente.');
+        alert('Credenciales inválidas. Intenta nuevamente.');
       }
     );
   }

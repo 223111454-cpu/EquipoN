@@ -4,6 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
+import { api } from '../../environments/api';
 
 @Component({
   selector: 'app-menu',
@@ -36,7 +37,15 @@ export class Menu implements OnInit {
     }
 
     this.email = usuario.email;
-    const url = `${environmentP.apiUrl}/usuario_info?cliente_id=${usuario.id}&tipo=${usuario.tipo}`;
+
+    let urlApi;
+    if (api.production) {
+      urlApi = environmentP.apiUrl;
+    }else{
+      urlApi = environment.apiUrl;
+    }
+
+    const url = `${urlApi}/usuario_info?cliente_id=${usuario.id}&tipo=${usuario.tipo}`;
 
     this.http.get(url).subscribe(
       (res: any) => {

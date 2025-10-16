@@ -51,7 +51,7 @@
             <label>INE (PDF)</label>
             <button type="button" class="file-button" (click)="ineInput.click()">Subir</button>
             <input #ineInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'ine')">
-            <span class="file-name" *ngIf="ineFile">{{ ineFile?.name }}</span>
+            <span class="file-name" *ngIf="ineFile">{{ ineFile.name }}</span>
         </div>
 
         <!-- Comprobante de Domicilio PDF -->
@@ -59,7 +59,7 @@
             <label>Comprobante de Domicilio (PDF)</label>
             <button type="button" class="file-button" (click)="cdInput.click()">Subir</button>
             <input #cdInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'cd')">
-            <span class="file-name" *ngIf="cdFile">{{ cdFile?.name }}</span>
+            <span class="file-name" *ngIf="cdFile">{{ cdFile.name }}</span>
         </div>
 
         <!-- Comprobante de Ingresos PDF -->
@@ -67,7 +67,7 @@
             <label>Comprobante de Ingresos (PDF)</label>
             <button type="button" class="file-button" (click)="comprobanteInput.click()">Subir</button>
             <input #comprobanteInput type="file" accept="application/pdf" class="file-input" (change)="onFileSelected($event, 'comprobante')">
-            <span class="file-name" *ngIf="comprobanteIngresosFile">{{ comprobanteIngresosFile?.name }}</span>
+            <span class="file-name" *ngIf="comprobanteIngresosFile">{{ comprobanteIngresosFile.name }}</span>
         </div>
 
         </div>
