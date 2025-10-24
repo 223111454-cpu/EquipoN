@@ -18,23 +18,26 @@ html, body {
    Contenedor principal
 ============================================================ */
 .login-container {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: url("https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/BancaUPMH/Captura.PNG") no-repeat center center;
-    background-size: contain;  
+    background-size: contain;
     background-color: #60046e; 
     color: white;
     font-family: Arial, sans-serif;
     position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
 }
 
 .background-image {
     position: absolute;
-    top: 0;
+    top: 0; 
     left: 0;
     width: 100%;
     height: 100%;

@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
 import { api } from '../../environments/api';
 
+// Importar SweetAlert2
+declare const Swal: any;
 
 @Component({ 
   selector: 'app-login',
@@ -23,9 +25,24 @@ export class Login {
 
   login() {
     if (!this.email || !this.password) {
-      alert('Por favor, completa todos los campos.');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Campos incompletos',
+        text: 'Por favor, completa todos los campos.',
+      });
       return;
     }
+
+    Swal.fire({
+      title: 'Iniciando sesión...',
+      html: 'Por favor espere',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
 
     this.cargando = true;
 
@@ -47,28 +64,49 @@ export class Login {
     this.http.post(url, datos).subscribe(
       (res: any) => {
         this.cargando = false;
+        Swal.close();
 
         if (res.status === 'success') {
           if (res.rol_id === 1) {
-              alert(`Login exitoso (${res.tipo})!`);
+              Swal.fire({
+                icon: 'success',
+                title: `¡Login exitoso!`,
+                text: `Bienvenido (${this.email})`,
+                timer: 2000,
+                showConfirmButton: false
+              });
               localStorage.setItem('usuario', JSON.stringify({ 
                 email: this.email, 
                 tipo: res.tipo, 
                 id: res.cliente_id,
                 rol_id: res.rol_id
               }));
-              this.router.navigate(['/menu']);
+              setTimeout(() => {
+                this.router.navigate(['/menu']);
+              }, 2000);
           } else {
-            alert('Acceso en mantenimiento. Solo usuarios clientes pueden acceder actualmente.');
+            Swal.fire({
+              icon: 'info',
+              title: 'Acceso en mantenimiento',
+              text: 'Solo los usuarios clientes pueden acceder actualmente.'
+            });
           }
         } else {
-          alert(res.message);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: res.message
+          });
         }
       },
       (err) => {
         this.cargando = false;
         console.error(err);
-        alert('Credenciales inválidas. Intenta nuevamente.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales inválidas',
+          text: 'Intenta nuevamente.'
+        });
       }
     );
   }

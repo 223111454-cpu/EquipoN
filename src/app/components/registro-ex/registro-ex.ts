@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
 import { api } from '../../environments/api';
 
+// Importar SweetAlert2 (usando el CDN global)
+declare const Swal: any;
 
 @Component({
   selector: 'app-registro-ex',
@@ -15,7 +17,6 @@ import { api } from '../../environments/api';
   styleUrls: ['./registro-ex.css']
 })
 export class RegistroEX {
-
   nombre: string = '';
   apellidos: string = '';
   correo: string = '';
@@ -29,18 +30,26 @@ export class RegistroEX {
   constructor(private router: Router, private http: HttpClient) {}
 
   registro() {
-
     if (!this.nombre || !this.apellidos || !this.correo || !this.confirmarCorreo ||
         !this.phone || !this.contrasena || !this.pasaporte || !this.pais) {
-        alert('Por favor, completa todos los campos antes de continuar.');
-        return;
+      Swal.fire({
+        title: 'Campos incompletos',
+        text: 'Por favor, completa todos los campos antes de continuar.',
+        icon: 'warning',
+        confirmButtonText: 'Entendido'
+      });
+      return;
     }
 
     if (this.correo !== this.confirmarCorreo) {
-      alert('Los correos electrónicos no coinciden');
+      Swal.fire({
+        title: 'Correos no coinciden',
+        text: 'Los correos electrónicos ingresados deben ser iguales.',
+        icon: 'error',
+        confirmButtonText: 'Corregir'
+      });
       return;
-    } 
-
+    }
 
     const datos = {
       nombre: this.nombre,
@@ -52,31 +61,58 @@ export class RegistroEX {
       pais: this.pais
     };
 
-    this.cargando = true; 
+    this.cargando = true;
 
-    let urlApi;
-    if (api.production) {
-      urlApi = environmentP.apiUrl;
-    }else{
-      urlApi = environment.apiUrl;
-    }
-
+    let urlApi = api.production ? environmentP.apiUrl : environment.apiUrl;
     const url = `${urlApi}/registro_EX`;
 
+    // Mostrar modal de carga
+    Swal.fire({
+      title: 'Registrando usuario...',
+      html: 'Por favor espere un momento',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    // Petición HTTP
     this.http.post(url, datos).subscribe(
       (res: any) => {
         this.cargando = false;
-        if(res.status === 'success'){
-          alert(res.message); 
-          this.router.navigate(['/login']);
+        Swal.close();
+
+        if (res.status === 'success') {
+          Swal.fire({
+            title: 'Registro exitoso',
+            text: res.message,
+            icon: 'success',
+            confirmButtonText: 'Ir al login'
+          }).then(() => {
+            this.router.navigate(['/login']);
+          });
         } else {
-          alert(res.message);
+          Swal.fire({
+            title: 'Error en el registro',
+            text: res.message,
+            icon: 'error',
+            confirmButtonText: 'Cerrar'
+          });
         }
       },
       (err) => {
         this.cargando = false;
+        Swal.close();
         console.error(err);
-        alert('Error en el registro. Intenta nuevamente.');
+
+        Swal.fire({
+          title: 'Error de conexión',
+          text: 'Ocurrió un problema al procesar el registro. Intenta nuevamente.',
+          icon: 'error',
+          confirmButtonText: 'Entendido'
+        });
       }
     );
   }

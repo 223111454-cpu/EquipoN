@@ -37,5 +37,15 @@ export const routes: Routes = [
     loadComponent: () => import('./components/aprobado-p/aprobado-p').then(m => m.AprobadoP), 
     canActivate: [authGuard_client] 
   },
+  { 
+    path: 'TuDinero', 
+    loadComponent: () => import('./components/tu-dinero/tu-dinero').then(m => m.TuDinero), 
+    canActivate: [authGuard_client] 
+  },
+  { 
+    path: 'Transferir', 
+    loadComponent: () => import('./components/transferir/transferir').then(m => m.Transferir), 
+    canActivate: [authGuard_client] 
+  },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' }
 ];

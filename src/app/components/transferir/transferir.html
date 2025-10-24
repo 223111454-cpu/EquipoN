@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UPMH BANCA - Menu</title>
+  <title>UPMH BANCA - Transferir</title>
   <link rel="icon" type="image/png" sizes="16x16"
     href="https://s3.amazonaws.com/www.codeflex.lat/documentos/f03dd06f-3df0-4831-a26e-e8daa6cbdde6/upmhLogo-removebg-preview.png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -73,7 +73,6 @@
                 Cerrar sesión
               </button>
             </div>
-
           </div>
         </div>
       </div>
@@ -86,7 +85,7 @@
             <nav class="text-sm">
               <ul>
                 <li>
-                  <a (click)="router.navigate(['/menu'])" class="flex items-center space-x-3 px-3 py-2.5 bg-[#3483fa]/10 text-[#3483fa] rounded-md font-semibold cursor-pointer">
+                  <a (click)="router.navigate(['/menu'])" class="flex items-center space-x-3 px-3 py-2.5 text-slate-600 hover:bg-slate-100 rounded-md cursor-pointer">
                     <i data-lucide="home" class="w-5 h-5"></i>
                     <span>Inicio</span>
                   </a>
@@ -173,66 +172,117 @@
 
         <!-- CONTENIDO PRINCIPAL -->
         <div class="col-span-12 md:col-span-9 lg:col-span-10 flex flex-col lg:flex-row gap-6">
-          <div class="w-full flex flex-col gap-6">
- 
-            <!-- SALDO -->
-            <div class="bg-white p-6 rounded-lg shadow-sm">
-              <div class="border-b border-slate-200 mb-4">
-                <div class="flex space-x-6 text-sm">
-                  <button class="pb-3 border-b-2 border-[#3483fa] font-semibold text-[#3483fa]">Saldo</button>
-                  <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800">Apartados</button>
+            <div class="w-full flex flex-col gap-6">
+              <!-- TRANSFERIR TARJETA-->
+
+
+              <div class="transfer-container">
+                <div class="transfer-content">
+                  <h1 class="transfer-title">Selecciona destinatario</h1>
+
+                  <div class="destinatario-select">
+                    <select [(ngModel)]="destinatarioSeleccionado">
+                      <option [ngValue]="null">Elige un destinatario</option>
+                      <option *ngFor="let d of destinatarios" [ngValue]="d">{{ d.nombre }} • {{ d.banco }}</option>
+                    </select>
+                    <button class="add-btn" (click)="abrirModal()">+</button>
+                  </div>
+
+                  <h1 class="transfer-title">Ingresa el monto</h1>
+
+                  <div class="user-info-card" *ngIf="destinatarioSeleccionado">
+                    <div class="avatar">{{ destinatarioSeleccionado.nombre?.charAt(0) }}</div>
+                    <div class="details">
+                      <div class="name">{{ destinatarioSeleccionado.nombre }}</div>
+                      <div class="account-details">
+                        <span class="clabe">{{ destinatarioSeleccionado.clabe }}</span>
+                        <span class="separator">•</span>
+                        <span class="banco">{{ destinatarioSeleccionado.banco }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="amount-section-wrapper">
+                    <div class="amount-input-container">
+                      <span class="currency-symbol">$</span>
+                      <input 
+                        type="number" 
+                        class="amount-input" 
+                        [(ngModel)]="monto"
+                        (input)="onMontoInput($event)"
+                        (focus)="onMontoFocus()"
+                        (blur)="onMontoBlur()"
+                        [style.width]="getInputWidth()"
+                        placeholder="0" 
+                        min="0" 
+                        step="1">
+                    </div>
+                    <div class="balance-info">
+                      Saldo disponible: <span>${{ saldo }}</span>
+                      <div class="daily-limit">Solo se puede retirar ${{ limiteDiario }} al día.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="description-section">
+                  <label for="descripcion">Descripción (opcional):</label>
+                  <input 
+                    id="descripcion" 
+                    type="text" 
+                    [(ngModel)]="descripcion" 
+                    placeholder="Ej. Pago de renta, regalo, etc." 
+                    class="description-input">
+                </div>
+
+                <div class="transfer-footer">
+                  <button class="continue-button" (click)="continuar()">Continuar</button>
                 </div>
               </div>
-              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <p class="text-xs text-slate-500">Ganancias</p>
-                    <span class="text-xs font-bold text-green-600 bg-green-100 px-2 py-0.5 rounded-full">13.0% anual</span>
+
+              <div class="modal-overlay" *ngIf="mostrarModal">
+                <div class="modal-container">
+                  <h2>Nuevo destinatario</h2>
+                  <div class="form-group">
+                    <label>Nombre:</label>
+                    <input type="text" [(ngModel)]="nuevoDestinatario.nombre" />
                   </div>
-                  <div class="flex items-baseline space-x-1 mt-1">
-                    <span class="text-4xl font-light text-slate-800">$ {{ saldoEntero }}</span>
-                    <span class="text-2xl font-light text-slate-500">{{ saldoDecimales }}</span>
+                  <div class="form-group">
+                    <label>Apellidos:</label>
+                    <input type="text" [(ngModel)]="nuevoDestinatario.apellidos" />
+                  </div>
+                  <div class="form-group">
+                    <label>Banco:</label>
+                    <input type="text" [(ngModel)]="nuevoDestinatario.banco" />
+                  </div>
+                  <div class="form-group">
+                    <label>CLABE:</label>
+                    <input type="text" [(ngModel)]="nuevoDestinatario.clabe" />
+                  </div>
+                  <div class="modal-actions">
+                    <button (click)="guardarDestinatario()" class="btn-guardar">Guardar</button>
+                    <button (click)="cerrarModal()" class="btn-cancelar">Cancelar</button>
+                    <button (click)="mostrarEscanerQR()" class="btn-qr">Escanear QR</button>
+                  </div>
+                    <div class="qr-section" *ngIf="escanearQR">
+                      <div class="qr-video-container">
+                        <video #qrVideo autoplay playsinline></video>
+                        <div class="qr-overlay">
+                          <div class="qr-corner top-left"></div>
+                          <div class="qr-corner top-right"></div>
+                          <div class="qr-corner bottom-left"></div>
+                          <div class="qr-corner bottom-right"></div>
+                        </div>
+                        <div class="qr-instructions">Centra el código QR dentro del marco</div>
+                        <button class="btn-cerrar-qr" (click)="cerrarEscanerQR()">✕</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="flex space-x-3 mt-4 sm:mt-0">
-                  <button (click)="router.navigate(['/TuDinero'])" class="px-5 py-2.5 border border-[#3483fa] text-[#3483fa] font-semibold rounded-md text-sm hover:bg-[#3483fa]/10 transition-colors">
-                    Ir a Tu dinero
-                  </button>
-                  <button (click)="router.navigate(['/Transferir'])" class="px-5 py-2.5 bg-[#3483fa] text-white font-semibold rounded-md text-sm hover:bg-[#2968c8] transition-colors">
-                    Transferir
-                  </button>
-                </div>
+
+
               </div>
             </div>
-
-            <!-- CRÉDITOS -->
-            <div>
-              <h2 class="text-xl font-semibold text-slate-700 mb-4">Opciones de crédito</h2>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-center space-x-4">
-                  <div class="flex-shrink-0">
-                    <img src="https://placehold.co/64x64/a855f7/FFFFFF?text=$$" alt="Icono de monedas" class="w-16 h-16 rounded-full">
-                  </div>
-                  <div>
-                    <p class="text-sm text-slate-600">Recibe hasta <span class="font-bold">$ 10,000</span> con un Crédito Personal.</p>
-                    <a (click)="router.navigate(['/credito'])" class="text-sm font-semibold text-[#3483fa] hover:text-[#2968c8] mt-2 inline-block cursor-pointer">Pedir crédito</a>
-                  </div>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm flex items-center space-x-4">
-                  <div class="flex-shrink-0">
-                    <img src="https://placehold.co/64x64/424242/FFFFFF?text=VISA" alt="Icono de tarjeta" class="w-16 h-12 rounded-md object-cover">
-                  </div>
-                  <div>
-                    <p class="text-sm text-slate-600">Consulta los movimientos y próximos pagos de tu tarjeta de crédito desde la app.</p>
-                    <a (click)="router.navigate(['/creditoT'])" class="text-sm font-semibold text-[#3483fa] hover:text-[#2968c8] mt-2 inline-block cursor-pointer">Consultar tarjeta</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
-      </div>
     </main>
   </div>
 

@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { environmentP } from '../../environments/environment.prod';
 import { api } from '../../environments/api';
 
+// Importar SweetAlert2 (usando el CDN global en index.html)
+declare const Swal: any;
 
 @Component({
   selector: 'app-registro-mx',
@@ -15,7 +17,6 @@ import { api } from '../../environments/api';
   styleUrls: ['./registro-mx.css']
 })
 export class RegistroMX {
-
   nombre: string = '';
   apellidos: string = '';
   correo: string = '';
@@ -31,23 +32,45 @@ export class RegistroMX {
   constructor(private router: Router, private http: HttpClient) {}
 
   registro() {
-    if (!this.nombre || !this.apellidos || !this.correo || !this.confirmarCorreo || !this.phone || !this.contrasena || !this.claveElectoral || !this.curpElectoral || !this.fechaEmision || !this.fechaVencimiento) {
-      alert('Todos los campos son obligatorios');
+    if (!this.nombre || !this.apellidos || !this.correo || !this.confirmarCorreo || 
+        !this.phone || !this.contrasena || !this.claveElectoral || 
+        !this.curpElectoral || !this.fechaEmision || !this.fechaVencimiento) {
+      Swal.fire({
+        title: 'Campos incompletos',
+        text: 'Todos los campos son obligatorios.',
+        icon: 'warning',
+        confirmButtonText: 'Entendido'
+      });
       return;
     }
 
     if (this.correo !== this.confirmarCorreo) {
-      alert('Los correos electrónicos no coinciden');
+      Swal.fire({
+        title: 'Correos no coinciden',
+        text: 'Los correos electrónicos ingresados deben ser iguales.',
+        icon: 'error',
+        confirmButtonText: 'Corregir'
+      });
       return;
     }
 
     if (this.claveElectoral.length !== 10) {
-      alert('La clave electoral debe tener exactamente 10 dígitos');
+      Swal.fire({
+        title: 'Clave electoral inválida',
+        text: 'La clave electoral debe tener exactamente 10 dígitos.',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+      });
       return;
     }
 
     if (this.curpElectoral.length !== 18) {
-      alert('El CURP debe tener exactamente 18 caracteres');
+      Swal.fire({
+        title: 'CURP inválido',
+        text: 'El CURP debe tener exactamente 18 caracteres.',
+        icon: 'error',
+        confirmButtonText: 'Corregir'
+      });
       return;
     }
 
@@ -63,34 +86,60 @@ export class RegistroMX {
       fechaVencimiento: this.fechaVencimiento
     };
 
-    this.cargando = true; 
+    this.cargando = true;
 
-    let urlApi;
-    if (api.production) {
-      urlApi = environmentP.apiUrl;
-    }else{
-      urlApi = environment.apiUrl;
-    }
-
+    let urlApi = api.production ? environmentP.apiUrl : environment.apiUrl;
     const url = `${urlApi}/registro_MX`;
+
+    // Muestra un loader visual mientras se envía la solicitud
+    Swal.fire({
+      title: 'Procesando registro...',
+      html: 'Por favor espere mientras completamos su solicitud.',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      showConfirmButton: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
 
     this.http.post(url, datos).subscribe(
       (res: any) => {
         this.cargando = false;
-        if(res.status === 'success'){
-          alert(res.message); 
-          this.router.navigate(['/login']);
+        Swal.close();
+
+        if (res.status === 'success') {
+          Swal.fire({
+            title: 'Registro exitoso',
+            text: res.message,
+            icon: 'success',
+            confirmButtonText: 'Ir al login'
+          }).then(() => {
+            this.router.navigate(['/login']);
+          });
         } else {
-          alert(res.message);
+          Swal.fire({
+            title: 'Error en el registro',
+            text: res.message,
+            icon: 'error',
+            confirmButtonText: 'Cerrar'
+          });
         }
       },
       (err) => {
         this.cargando = false;
+        Swal.close();
         console.error(err);
-        alert('Error en el registro. Intenta nuevamente.');
+
+        Swal.fire({
+          title: 'Error de conexión',
+          text: 'Ocurrió un problema al procesar su registro. Inténtelo nuevamente.',
+          icon: 'error',
+          confirmButtonText: 'Entendido'
+        });
       }
     );
-  } 
+  }
 
   onClaveElectoralInput(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -109,7 +158,6 @@ export class RegistroMX {
     }
     this.fechaEmision = input.value;
   }
-
 
   onClaveFechaVencimiento(event: Event) {
     const input = event.target as HTMLInputElement;
